@@ -23,6 +23,7 @@ This project demonstrates the implementation of a Disaster Recovery (DR) archite
 ---
 
 # 📁 Project Structure
+```
 
 project-folder/
 │
@@ -36,7 +37,7 @@ project-folder/
 │   ├── rds-endpoint.png
 │
 └── README.md
-
+```
 ---
 
 **📸ARCHITECTURE IMAGE**
@@ -90,25 +91,25 @@ project-folder/
 
 # Step-by-Step Upload to GitHub
 
-- Step 1 – Open terminal inside project folder
+- Step 1  Open terminal inside project folder
          cd project-folder
          
-- Step 2 – Initialize Git
+- Step 2 Initialize Git
          git init
          
-- Step 3 – Add files
+- Step 3  Add files
          git add .
          
-- Step 4 – Commit files
+- Step 4 Commit files
          git commit -m "Initial project upload"
          
-- Step 5 – Create repository on GitHub
+- Step 5 Create repository on GitHub
          aws-disaster-recovery-project
 
-- Step 6 – Connect local project to GitHub 
+- Step 6  Connect local project to GitHub 
          git remote add origin https://github.com/your-username/project-name.git
 
-- Step 7 – Upload project
+- Step 7 Upload project
          git branch -M main
          git push -u origin main
 ---
@@ -168,13 +169,14 @@ app.listen(3000, () => {
 ---
 
 # 🛢️ 3. MySQL Commands (RDS)
+ - Connect to RDS 
 
-   - Connect to RDS
-    ```
+   ```
    mysql -h your-rds-endpoint -u admin -p
-    ```
+   ```
+   
+ - Create database & table
 
-   - Create database & table
    ```
    CREATE DATABASE testdb;
    USE testdb;
@@ -184,22 +186,31 @@ app.listen(3000, () => {
     name VARCHAR(50),
     email VARCHAR(100)
    );
-```
-- Insert data (Replication Test)
-```
-INSERT INTO users (name, email)
-VALUES ("Om", "om@gmail.com");
-```
-
-# 🔁 4. Test Replication (DR Region) 
-
-  - Run same query in Read Replica
     ```
+   
+ - Insert data (Replication Test)
+```
+  INSERT INTO users (name, email)
+  VALUES ("Om", "om@gmail.com");
+```
+
+
+
+
+
+
+
+
+# 🔁 4. Test Replication (DR Region)
+
+- Run same query in Read Replica
+```
   SELECT * FROM users;
-   ```
+```
 ---
 
 # ⚡ 5.  Failover Step**
+
         1.Go to AWS RDS
         2.Select Read Replica
         3.Click Promote
