@@ -5,20 +5,22 @@ This project demonstrates the implementation of a Disaster Recovery (DR) archite
 ---
 # 🏗️ Architecture Overview
 
--Primary Region: EC2 instance + RDS MySQL database
--DR Region: RDS Read Replica (cross-region)
--Application: Node.js (Express)
--Database: MySQL (AWS RDS)
--Replication: Automated cross-region replication
+- Primary Region: EC2 instance + RDS MySQL database
+- DR Region: RDS Read Replica (cross-region)
+- Application: Node.js (Express)
+- Database: MySQL (AWS RDS)
+- Replication: Automated cross-region replication
+---
 
 # 🛠️ Technologies Used
 
--AWS EC2
--AWS RDS (MySQL)
--Node.js
--Express.js
--Git & GitHub
--MySQL Client / CLI
+- AWS EC2
+- AWS RDS (MySQL)
+- Node.js
+- Express.js
+- Git & GitHub
+- MySQL Client / CLI
+---
 
 # 📁 Project Structure
 
@@ -35,25 +37,27 @@ project-folder/
 │
 └── README.md
 
+---
+
 **📸ARCHITECTURE IMAGE**
 
 ![Image](https://github.com/user-attachments/assets/d92cb06b-b6f9-4993-8518-8f5cef8aa6d2)
 
 # 🚀 Steps to Run the Project
 
-1.Clone the repository
+- 1.Clone the repository
   git clone https://github.com/your-username/project-name.git
 
-2.Navigate to project folder
+- 2.Navigate to project folder
   cd project-name
 
-3.Install dependencies
+- 3.Install dependencies
   npm install
 
-4.Run the application
+- 4.Run the application
   node app.js
   
-5.Open in browser
+- 5.Open in browser
   http://localhost:3000
 
 # Replication Proof
@@ -71,11 +75,11 @@ project-folder/
 
 # RTO and RPO
 
-RTO (Recovery Time Objective):
-Time required to restore application after failure.
+- RTO (Recovery Time Objective):
+- Time required to restore application after failure.
 
-RPO (Recovery Point Objective):
-Amount of data that can be lost during failure.
+- RPO (Recovery Point Objective):
+- Amount of data that can be lost during failure.
 
 # Lessons Learned
 
@@ -86,44 +90,45 @@ Amount of data that can be lost during failure.
 
 # Step-by-Step Upload to GitHub
 
-Step 1 – Open terminal inside project folder
+- Step 1 – Open terminal inside project folder
          cd project-folder
          
-Step 2 – Initialize Git
+- Step 2 – Initialize Git
          git init
          
-Step 3 – Add files
+- Step 3 – Add files
          git add .
          
-Step 4 – Commit files
+- Step 4 – Commit files
          git commit -m "Initial project upload"
          
-Step 5 – Create repository on GitHub
+- Step 5 – Create repository on GitHub
          aws-disaster-recovery-project
 
-Step 6 – Connect local project to GitHub 
+- Step 6 – Connect local project to GitHub 
          git remote add origin https://github.com/your-username/project-name.git
 
-Step 7 – Upload project
+- Step 7 – Upload project
          git branch -M main
          git push -u origin main
+---
 
 # Here are all commands + code (step-by-step) for your AWS Disaster Recovery Node.js + RDS project.
 
 # 🚀 1. Create Node.js App
 
-   Step 1 – Create project folder
+  -  Step 1 – Create project folder
             mkdir dr-project
             cd dr-project
 
-   Step 2 – Initialize Node.js
+   - Step 2 – Initialize Node.js
            npm init -y
 
-   Step 3 – Install dependencies
+   - Step 3 – Install dependencies
             npm install express mysql2
 
 # 🧾 2. Create app.js
-
+```
 const express = require("express");
 const mysql = require("mysql2");
 
@@ -136,7 +141,6 @@ const db = mysql.createConnection({
   password: "your-password",
   database: "testdb"
 });
-
 // Connect to DB
 db.connect((err) => {
   if (err) {
@@ -160,32 +164,42 @@ app.get("/", (req, res) => {
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
+```
+---
 
 # 🛢️ 3. MySQL Commands (RDS)
 
-   Connect to RDS
+   - Connect to RDS
+    ```
    mysql -h your-rds-endpoint -u admin -p
-   
-   Create database & table
-   
+    ```
+
+   - Create database & table
+   ```
    CREATE DATABASE testdb;
    USE testdb;
 
-  CREATE TABLE users (
+   CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50),
     email VARCHAR(100)
    );
-Insert data (Replication Test)
+```
+- Insert data (Replication Test)
+```
 INSERT INTO users (name, email)
 VALUES ("Om", "om@gmail.com");
+```
 
 # 🔁 4. Test Replication (DR Region) 
 
-  Run same query in Read Replica
+  - Run same query in Read Replica
+    ```
   SELECT * FROM users;
+   ```
+---
 
-# ⚡ 5. Failover Steps
+# ⚡ 5.  Failover Step**
         1.Go to AWS RDS
         2.Select Read Replica
         3.Click Promote
@@ -194,13 +208,17 @@ VALUES ("Om", "om@gmail.com");
         -"new-dr-endpoint"
 
 # 🖥️ 6. Run Application
-       node app.js
 
-      -Open browser:
+      -  node app.js
+
+      - Open browser:
+       ```
        http://localhost:3000
 
+        ```
 # ☁️ 7. EC2 Setup Commands
 
+```
 Connect to EC2
 ssh -i your-key.pem ec2-user@your-ec2-ip
 
@@ -216,9 +234,10 @@ Run app on EC2
 cd dr-project
 npm install
 node app.js
+```
 
 # 🐙 8. GitHub Upload Commands
-
+```
 git init
 git add .
 git commit -m "DR project"
@@ -226,6 +245,7 @@ git commit -m "DR project"
 git branch -M main
 git remote add origin https://github.com/your-username/project-name.git
 git push -u origin main
+```
 
 # ✅ Final Flow
 
